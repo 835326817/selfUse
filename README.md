@@ -29,7 +29,7 @@
                     <input type="checkbox" name="group" v-bind:value="item.No" v-model="selectValue" />
                 </td>
                 <td v-cloak>{{item.Name}}</td>
-                <td v-cloak><a href="javascript:" @click="modify(item.No,index)">修改</a>&nbsp;<a href="javascript:" @click="showGroup(item.No)">查看</a>&nbsp<a href="javascript:" @click="moveGroup(item.No)">移动</a>&nbsp;<a href="javascript:" @click="deleteList(item.No)">删除</a></td>
+                <td v-cloak><a href="javascript:" @click="modify(item.No,index)">修改</a>&nbsp;<a href="javascript:" @click="showGroup(item.No)">查看</a>&nbsp;<a href="javascript:" @click="moveGroup(item.No)">移动</a>&nbsp;<a href="javascript:" @click="deleteList(item.No)">删除</a></td>
             </tr>
         </tbody>
     </table>
