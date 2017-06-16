@@ -1,36 +1,8 @@
-﻿//格式
-//<style>
-//    [v-cloak] {
-//    display: none;
-//    }
-//</style>
-//<div id="divTr">
-//    <!-- 搜索框 -->
-//    <input class="bg-white" type="text" v-model="searchName" placeholder="组名" v-on:keyup.13="search" />
-//    <!-- 列表框 -->
-//    <table>
-//        <thead>
-//            <tr style="height: 40px">
-//                <th>
-//                    <input type="checkbox" v-on:click="checkAll" id="selAll" />
-//                </th>
-//                <th>组名称</th>
-//                <th>操作</th>
-//            </tr>
-//        </thead>
-//        <tbody>
-//            <tr v-for="(item,index) in items">
-//          <!-- v-cloak  防止在未渲染完成时候 显示出来 -->
-//                <td v-cloak>
-//                    <input type="checkbox" name="group" v-bind:value="item.No" v-model="selectValue" />
-//                </td>
-//                <td v-cloak>{{item.Name}}</td>
-//                <td v-cloak><a href="javascript:" @click="modify(item.No,index)">修改</a>&nbsp;<a href="javascript:" @click="showGroup(item.No)">查看</a>&nbsp<a href="javascript:" @click="moveGroup(item.No)">移动</a>&nbsp;<a href="javascript:" @click="deleteList(item.No)">删除</a></td>
-//            </tr>
-//        </tbody>
-//    </table>
-//    <a href="javascript:" v-show="upPage" v-on:click="last" v-cloak>上一页</a>&nbsp;&nbsp;&nbsp;<a href="javascript:" v-show="nextPage" v-on:click="next" v-cloak>下一页</a>
-//</div>
+//post请求为jq方式  $.post
+//layer弹窗需基于jq
+//修改增加部分为 div>iframe 
+//ps 此处使用了layer 弹窗控件   请自行修改 如删除部分 
+
 //所有项必填,若无虚功能,请随便填写
 //el:实例化元素Id "#app1"
 //items:初始化时的字符串
@@ -55,7 +27,6 @@
 //        a:function(){}
 //        } 
 //    };
-//ps 此处使用了layer 弹窗控件   请自行修改 如删除部分 
 function initVue(options) {
     return new Vue({
         el: options.el,
