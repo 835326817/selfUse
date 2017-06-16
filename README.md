@@ -1,4 +1,6 @@
 # InitVue
+```html
+
 <pre>
 <style>
     [v-cloak] {
@@ -6,7 +8,8 @@
     }
 </style>
 </pre>
-<code>
+```html
+
 <div id="divTr">
     <!-- 搜索框 -->
     <input class="bg-white" type="text" v-model="searchName" placeholder="组名" v-on:keyup.13="search" />
@@ -34,8 +37,11 @@
     </table>
     <a href="javascript:" v-show="upPage" v-on:click="last" v-cloak>上一页</a>&nbsp;&nbsp;&nbsp;<a href="javascript:" v-show="nextPage" v-on:click="next" v-cloak>下一页</a>
 </div>
-</code>
-<pre>
+```
+
+
+```javascript
+
    var vueOptions = {
             el: "#divTr",
             items: '<%=trs%>',
@@ -82,4 +88,5 @@
             }
           }
         var groupList = initVue(vueOptions);
-        </pre>
+    
+```
