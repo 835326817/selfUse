@@ -31,7 +31,7 @@
 //    </table>
 //    <a href="javascript:" v-show="upPage" v-on:click="last" v-cloak>上一页</a>&nbsp;&nbsp;&nbsp;<a href="javascript:" v-show="nextPage" v-on:click="next" v-cloak>下一页</a>
 //</div>
-
+//所有项必填,若无虚功能,请随便填写
 //el:实例化元素Id "#app1"
 //items:初始化时的字符串
 //total:总数
@@ -115,7 +115,7 @@ function initVue(options) {
                     _this.setPage();
                 }, "json")
             },
-            //增加机器
+            //增加
             //此处为弹窗,请自行修改 若每个页面不同 则直接使用mixin添加
             add: function () {
                 $("#spTitle").text(options.addText);
@@ -254,7 +254,7 @@ function initVue(options) {
             }
             this.setPage();//设置上一页与下一页按钮的显示与隐藏
         }
-            , mixins: [options.mixin]
+            , mixins: [options.mixin]  //自己添加的data与methods
 
     });
 }
