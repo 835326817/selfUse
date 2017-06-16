@@ -1,13 +1,12 @@
 # InitVue
-
+<pre>
 <style>
     [v-cloak] {
     display: none;
     }
 </style>
-<html>
-<head></head>
-<body>
+</pre>
+<code>
 <div id="divTr">
     <!-- 搜索框 -->
     <input class="bg-white" type="text" v-model="searchName" placeholder="组名" v-on:keyup.13="search" />
@@ -35,10 +34,8 @@
     </table>
     <a href="javascript:" v-show="upPage" v-on:click="last" v-cloak>上一页</a>&nbsp;&nbsp;&nbsp;<a href="javascript:" v-show="nextPage" v-on:click="next" v-cloak>下一页</a>
 </div>
-</body>
-</html>
-```javascript
-<script>
+</code>
+<pre>
    var vueOptions = {
             el: "#divTr",
             items: '<%=trs%>',
@@ -75,7 +72,6 @@
                              nos = nos.join(",");
                          }
                          $("#spTitle").text("移动组");
-
                          $("#iframeUrl").attr("src", "MoveGroup.aspx?type=<%=Request.QueryString["type"]%>&no=" + nos);
                         $("#dvshow").show();
                     },
@@ -86,5 +82,4 @@
             }
           }
         var groupList = initVue(vueOptions);
-</script>
-```
+        </pre>
