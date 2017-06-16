@@ -1,14 +1,12 @@
 # InitVue
+### demo
 ```html
 
-<pre>
 <style>
     [v-cloak] {
     display: none;
     }
 </style>
-</pre>
-```html
 
 <div id="divTr">
     <!-- 搜索框 -->
@@ -38,8 +36,6 @@
     <a href="javascript:" v-show="upPage" v-on:click="last" v-cloak>上一页</a>&nbsp;&nbsp;&nbsp;<a href="javascript:" v-show="nextPage" v-on:click="next" v-cloak>下一页</a>
 </div>
 ```
-
-
 ```javascript
 
    var vueOptions = {
