@@ -33,7 +33,16 @@
             </tr>
         </tbody>
     </table>
-    <a href="javascript:" v-show="upPage" v-on:click="last" v-cloak>上一页</a>&nbsp;&nbsp;&nbsp;<a href="javascript:" v-show="nextPage" v-on:click="next" v-cloak>下一页</a>
+    <div style="font-size:16px;">  
+        <a href="javascript:"  v-cloak v-show="beforePage" @click="first">首页</a>
+        <a href="javascript:"  v-cloak v-show="beforePage" @click="last">上一页</a>
+        <span v-for="item in allPage" v-show="isShowPage">
+           <a href="javascript:" v-cloak @click="href(item)">{{item}}</a>&nbsp;
+        </span>
+        <a href="javascript:"  v-cloak v-show="endPage" @click="next">下一页</a>
+        <a href="javascript:"  v-cloak v-show="endPage" @click="end">末页</a>
+        <span v-cloak>第{{pageIndex}}页/共{{allPage}}页</span>
+    </div>
 </div>
 ```
 ```javascript

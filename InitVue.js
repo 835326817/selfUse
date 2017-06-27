@@ -42,9 +42,34 @@ function initVue(options) {
         methods: {
             //翻页按钮显示
             setPage: function () {
-                this.nextPage = this.total > this.pageIndex * options.pageSize ? true : false;
-                this.upPage = this.pageIndex > 1 ? true : false;
-
+                if (this.pageIndex == this.allPage) {
+                    //列如 1/1  3/3
+                    if (this.allPage == 1) {
+                        this.beforePage = false;
+                        this.endPage = false;
+                        this.isShowPage = false;
+                    }
+                    else {
+                        //可跳转页面  可返回首页
+                        this.beforePage = true;
+                        this.endPage = false;
+                        this.isShowPage = true;
+                    }
+                }
+                else {
+                    //  1/3
+                    if (this.pageIndex == 1) {
+                        this.beforePage = false;
+                        this.isShowPage = true;
+                        this.endPage = true;
+                    }
+                    else {
+                        //   2/3
+                        this.beforePage = true;
+                        this.isShowPage = true;
+                        this.endPage = true;
+                    }
+                }
             },
             //上一页
             last: function () {
@@ -54,6 +79,21 @@ function initVue(options) {
             //下一页
             next: function () {
                 this.pageIndex++;
+                this.getList();
+            },
+            //首页
+            first:function(){
+                this.pageIndex=1;
+                this.getList();
+            },
+            //尾页
+            end:function(){
+                this.pageIndex = this.allPage;
+                this.getList();
+            },
+            //尾页
+            href: function (a) {
+                this.pageIndex = a;
                 this.getList();
             },
             //全选功能
