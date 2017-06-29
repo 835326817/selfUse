@@ -41,7 +41,7 @@
         </span>
         <a href="javascript:"  v-cloak v-show="endPage" @click="next">下一页</a>
         <a href="javascript:"  v-cloak v-show="endPage" @click="end">末页</a>
-        <span v-cloak>第{{pageIndex}}页/共{{allPage}}页</span>
+        <span v-cloak v-show="isShowNum">第{{pageIndex}}页/共{{allPage}}页</span>
     </div>
 </div>
 ```

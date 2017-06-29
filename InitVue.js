@@ -37,39 +37,53 @@ function initVue(options) {
             pageIndex: 1,//页数
             total: parseInt(options.total),//总数
             selectValue: [],//选中的值
-            searchName:""
+            searchName: "",
+            beforePage: false,
+            endPage: false,
+            isShowPage:false,
+            allPage: 0,
+            isShowNum:true
         },
         methods: {
             //翻页按钮显示
             setPage: function () {
-                if (this.pageIndex == this.allPage) {
-                    //列如 1/1  3/3
-                    if (this.allPage == 1) {
-                        this.beforePage = false;
-                        this.endPage = false;
-                        this.isShowPage = false;
-                    }
-                    else {
-                        //可跳转页面  可返回首页
-                        this.beforePage = true;
-                        this.endPage = false;
-                        this.isShowPage = true;
-                    }
+                if (this.allPage == 0) {
+                    this.beforePage = false;
+                    this.endPage = false;
+                    this.isShowPage = false;
+                    this.isShowNum = false;
                 }
                 else {
-                    //  1/3
-                    if (this.pageIndex == 1) {
-                        this.beforePage = false;
-                        this.isShowPage = true;
-                        this.endPage = true;
+                    if (this.pageIndex == this.allPage) {
+                        //列如 1/1  3/3
+                        if (this.allPage == 1) {
+                            this.beforePage = false;
+                            this.endPage = false;
+                            this.isShowPage = false;
+                        }
+                        else {
+                            //可跳转页面  可返回首页
+                            this.beforePage = true;
+                            this.endPage = false;
+                            this.isShowPage = true;
+                        }
                     }
                     else {
-                        //   2/3
-                        this.beforePage = true;
-                        this.isShowPage = true;
-                        this.endPage = true;
+                        //  1/3
+                        if (this.pageIndex == 1) {
+                            this.beforePage = false;
+                            this.isShowPage = true;
+                            this.endPage = true;
+                        }
+                        else {
+                            //   2/3
+                            this.beforePage = true;
+                            this.isShowPage = true;
+                            this.endPage = true;
+                        }
                     }
                 }
+               
             },
             //上一页
             last: function () {
@@ -238,23 +252,42 @@ function initVue(options) {
             search: function () {
                 var _this = this;
                 options.searchData.name = _this.searchName;
-                $.post(options.searchUrl, options.searchData, function (data) {
+                if (options.searchData.name == "") {
+                    _this.isShowNum = true;
+                    var data = (new Function("return " + options.items))();
                     if (data.result != -1) {
-                        _this.items = data;
-                        if (_this.items.length > 50) {
-                            layer.msg("搜索数据过多,目前只显示前50条")
-                            _this.items.splice(50, _this.items.length - 49);
+                        _this.items = data.Rows;
+                    }
+                    _this.allPage = parseInt(this.total / options.pageSize) + (this.total % options.pageSize == 0 ? 0 : 1);
+                    _this.setPage();//设置上一页与下一页按钮的显示与隐藏
+                }
+                else {
+                    $.post(options.searchUrl, options.searchData, function (data) {
+                        if (data.result != -1) {
+                            _this.items = data;
+                            if (_this.items.length > 50) {
+                                layer.msg("搜索数据过多,目前只显示前50条")
+                                _this.items.splice(50, _this.items.length - 49);
+                            }
+
+                            _this.isShowNum = false;
+                            _this.beforePage = false;
+                            _this.endPage = false;
+                            _this.isShowPage = false;
                         }
-                        _this.upPage = false;
-                        _this.nextPage = false;
-                    }
-                    else {
-                        layer.msg("没找到结果");
-                        _this.items = new Array;
-                        _this.upPage = false;
-                        _this.nextPage = false;
-                    }
-                }, "json");
+                        else {
+                            layer.msg("没找到结果");
+                            _this.items = new Array;
+
+
+                            _this.isShowNum = false;
+                            _this.beforePage = false;
+                            _this.endPage = false;
+                            _this.isShowPage = false;
+                        }
+                    }, "json");
+                }
+               
             }
         },
         mounted: function () {
@@ -263,6 +296,7 @@ function initVue(options) {
             if (data.result != -1) {
                 this.items = data.Rows;
             }
+            this.allPage = parseInt(this.total / options.pageSize) + (this.total % options.pageSize == 0 ? 0 : 1);
             this.setPage();//设置上一页与下一页按钮的显示与隐藏
         }
             , mixins: [options.mixin]  //自己添加的data与methods
