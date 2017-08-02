@@ -1,4 +1,3 @@
-# mysql
 ## 为EF6生成的mysql实体类添加注释
 ## demo见文件 parking.tt
 ### 添加的方法
