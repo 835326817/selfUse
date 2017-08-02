@@ -14,7 +14,7 @@
     /// </summary>  
 ```
 
-#### 注意点:自行修改连接字符串 约置于432行处
+#### 注意点:自行修改*连接字符串* 约置于432行处
 ```
     public string GetRemark(EdmProperty edmProperty)
         {
