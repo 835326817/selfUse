@@ -1,4 +1,3 @@
-# mysql
 ## 为EF6生成的mysql实体类添加注释
 ## demo见文件 parking.tt
 ### 添加的方法
@@ -14,7 +13,7 @@
     /// </summary>  
 ```
 
-#### 注意点:自行修改连接字符串 约置于432行处
+#### 注意点:自行修改*连接字符串 数据库名* 约置于432行处
 ```
     public string GetRemark(EdmProperty edmProperty)
         {
