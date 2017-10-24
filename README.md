@@ -49,7 +49,7 @@
 
    var vueOptions = {
             el: "#divTr",
-            items: '<%=trs%>',
+            items: '',
             total: '<%=total%>',
              pageSize: 30,
              getUrl: "GroupList.aspx",
